@@ -1,0 +1,119 @@
+version: 2
+
+
+semantic_models:
+  - name: orders
+    description: |
+      Order fact table at the order level.  This table contains one row
+      per order and includes the order key
+    model: ref('fct_orders')
+    defaults:
+      agg_time_dimension: order_date
+    
+    entities:
+      - name: customer_order
+        type: primary
+        expr: order_key
+      - name: customer
+        type: foreign
+        expr: customer_key
+
+    dimensions:
+      - name: order_date
+        type: time
+        type_params:
+          time_granularity: day
+      
+      - name: order_status_code
+        description: Indicates the status of the order
+        type: categorical
+        expr: status_code
+
+      - name: order_priority_code
+        description: Indicates the priority of the order
+        type: categorical
+        expr: priority_code
+      
+      - name: clerk_on_order
+        description: The clerk on the order
+        type: categorical
+        expr: clerk_name
+      
+    measures:
+      - name: total_revenue
+        agg: sum
+        expr: gross_item_sales_amount
+      - name: total_customers
+        agg: count_distinct
+        expr: customer_key
+
+  - name: customers
+    description: |
+      Customer dim table at the individual customer level.  This table contains one row
+      per customer and includes the customer key
+    model: ref('dim_customers')
+
+    entities:
+      - name: customer
+        type: primary
+        expr: customer_key
+
+    dimensions:
+      - name: customer_market_segment
+        description: The market segment the customer belongs to
+        type: categorical
+        expr: market_segment
+
+      - name: customer_balance_segment
+        description: Bucketing customers by their account balance
+        type: categorical
+        expr: |
+          case
+            when account_balance < 0 then 'Bad Debt'
+            when account_balance < 2500 then 'Low'
+            when account_balance < 7500 then 'Medium'
+            else 'High'
+          end
+
+      - name: nation
+        description: The nation the customer belongs to
+        type: categorical
+        expr: nation
+        
+      - name: region
+        description: The region the customer belongs to
+        type: categorical
+        expr: region
+  
+  - name: order_items
+    description: |
+      Line items for an order.  An order_key can be represented multiple times
+      in this table
+    model: ref('fct_order_items')
+    defaults:
+      agg_time_dimension: order_date
+
+    entities:
+      - name: order_item
+        type: primary
+        expr: order_item_key
+      - name: supplier
+        type: foreign
+        expr: supplier_key
+      - name: customer
+        type: foreign
+        expr: customer_key
+      - name: customer_order
+        type: foreign
+        expr: order_key
+
+    dimensions:
+      - name: order_date
+        type: time
+        type_params:
+          time_granularity: day
+
+    measures:
+      - name: total_expense
+        agg: sum
+        expr: supplier_cost

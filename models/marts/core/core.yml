@@ -26,7 +26,7 @@ models:
         description: region name
         data_tests:
           - accepted_values:
-              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE']
+              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
               severity: warn
       - name: name
         data_type: varchar(25)

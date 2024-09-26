@@ -60,7 +60,7 @@ models:
         description: status code of the order item
         data_tests:
           - accepted_values:
-              values: ['returned','billed','shipped']
+              values: ['billed','shipped']
       - name: ship_date
         description: '{{ doc("ship_date") }}'
       - name: commit_date

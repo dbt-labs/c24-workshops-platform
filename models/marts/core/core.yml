@@ -26,8 +26,12 @@ models:
         description: region name
         data_tests:
           - accepted_values:
-              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
-              severity: warn
+              ## Mod Start
+              ##values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
+              ##severity: warn
+              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE']
+              severity: error
+              ## Mod End
       - name: name
         data_type: varchar(25)
         description: customer id

@@ -53,7 +53,7 @@ models:
         data_tests:
           - accepted_values:
               values: ['returned','accepted']
-              severity: warn
+              severity: error
       - name: is_return
         description: '{{ doc("is_return") }}'
       - name: status_code

@@ -16,7 +16,7 @@ models:
     description: Customer dimensions table
     columns:
       - name: customer_key
-        data_type: int
+        data_type: string
         description: Primary key on the customers table
         data_tests:
           - unique

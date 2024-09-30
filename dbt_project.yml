@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good project name should reflect your organization's
 # name or the intended use of these models
-name: 'analytics'
+name: 'platform'
 version: '1.0.0'
 config-version: 2
 

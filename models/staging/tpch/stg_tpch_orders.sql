@@ -20,6 +20,7 @@ rename as (
         o_comment as comment
 
     from source
+    
 
 )
 

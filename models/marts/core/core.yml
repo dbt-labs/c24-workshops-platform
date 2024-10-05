@@ -79,6 +79,7 @@ models:
     
   - name: dim_parts
     description: Parts dimensions table
+    access: public
     columns:
       - name: part_key
         description: primary key of the model
@@ -102,6 +103,7 @@ models:
 
   - name: dim_suppliers
     description: Suppliers dimensions table
+    access: public
     columns:
       - name: supplier_key
         description: primary key of the model

@@ -45,7 +45,10 @@ vars:
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
 models:
-  analytics:
+  platform:
+    demo_examples:
+      python:
+        +enabled: false
     staging:
       +materialized: view
 

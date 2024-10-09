@@ -45,9 +45,10 @@ vars:
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
 models:
-  analytics:
-    staging:
-      +materialized: view
+  platform:
+    demo_examples:
+      python:
+        +enabled: false
 
     marts:
       core:

@@ -1,0 +1,1 @@
+select * {{ ref('core', 'fct_payments') }}

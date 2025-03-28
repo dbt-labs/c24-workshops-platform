@@ -1,1 +1,1 @@
-select * {{ ref('core', 'fct_payments') }}
+select * from {{ ref('core', 'fct_payments') }}
